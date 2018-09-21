@@ -1,0 +1,11 @@
+#header {
+	background: aqua;
+
+	span {
+		color: red;
+	}
+
+	&.active {
+		background: blue;
+	}
+}
