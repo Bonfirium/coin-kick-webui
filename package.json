@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=local webpack-dev-server --mode development --progress --colors --history-api-fallback --hot --inline"
+	  "start": "cross-env NODE_ENV=local webpack-dev-server --mode development --progress --colors --history-api-fallback --hot --inline"
   },
   "author": "Bonfirium",
   "license": "ISC",
@@ -31,6 +31,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
+  	"cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
     "node-sass": "^4.9.3",
     "html-webpack-plugin": "^3.2.0",

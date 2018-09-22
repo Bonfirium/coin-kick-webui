@@ -1,6 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 @import "header";
 
 body, html {
 	margin: 0;
 	padding: 0;
 }
+
+body {
+  background-color: #DDDADA;
+}
+
+a {
+  text-decoration: none!important;
+  color: black;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0;
+}
+
+.btn {
+  text-align: center;
+  color: #FFF;
+  background-color: #009688;
+  border-radius: 25px;
+  width: 90px;
+  height: 20px;
+  padding: 10px 30px;
+}
+
+/*.hidden {
+  opacity: 0;
+}*/
+
