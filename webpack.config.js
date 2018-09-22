@@ -18,7 +18,7 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 const timeCache = Date.now();
 
 module.exports = {
-	entry: { app: path.resolve('src/index.jsx') },
+	entry: { app: path.resolve('src/index.js') },
 	output: {
 		publicPath: '/',
 		path: path.resolve('dist'),
