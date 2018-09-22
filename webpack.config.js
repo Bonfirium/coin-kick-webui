@@ -1,8 +1,12 @@
+/* eslint-disable import/no-dynamic-require */
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
-// noinspection JSUnusedLocalSymbols
 const webpack = require('webpack');
+
+const configFileName = `${process.env.NODE_ENV}.config.js`;
+const configFile = require(`./config/${configFileName}`);
 
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 	template: `${__dirname}/src/assets/index.html`,
@@ -10,10 +14,10 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 	inject: 'body',
 });
 
-// const extractSass = new ExtractTextPlugin({
-// 	filename: '[name].[hash].css',
-// 	disable: process.env.NODE_ENV === 'local',
-// });
+const extractSass = new ExtractTextPlugin({
+	filename: '[name].[hash].css',
+	disable: process.env.NODE_ENV === 'local',
+});
 
 const timeCache = Date.now();
 
@@ -70,6 +74,11 @@ module.exports = {
 	},
 	plugins: [
 		new CleanWebpackPlugin(['dist']),
+		new webpack.DefinePlugin({
+			__URL__: JSON.stringify(configFile.url),
+			__API_URL__: JSON.stringify(configFile.api),
+		}),
 		HTMLWebpackPluginConfig,
+		extractSass,
 	],
 };

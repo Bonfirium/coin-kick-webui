@@ -10,7 +10,7 @@ export default class SignUp extends React.Component {
 					<input className="reg_form" type="text" placeholder="E-mail" />
 					<input className="reg_form" type="password" placeholder="Password" />
 					<input className="reg_form" type="password" placeholder="Password repeat" />
-					<div className="btn">Log In</div>
+					<button type="button" className="btn">Log In</button>
 				</form>
 			</div>
 		);

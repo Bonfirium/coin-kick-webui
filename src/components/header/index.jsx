@@ -1,6 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import ModalActions from '../../actions/ModalActions';
 
-export default class Header extends React.Component {
+class Header extends React.Component {
+
+	sighUp(e) {
+		e.preventDefault();
+	}
 
 	render() {
 		return (
@@ -25,10 +31,22 @@ export default class Header extends React.Component {
 				</div>
 				<div className="hidden head_btn-container">
 					<a className="btn btn_head" href="">Вход</a>
-					<a className="btn btn_head" href="">Регистрация</a>
+					<a className="btn btn_head" href="" onClick={(e) => { this.sighUp(e); }}>Регистрация</a>
 				</div>
 			</div>
 		);
 	}
 
 }
+
+Header.propTypes = {
+};
+
+export default connect(
+	() => ({
+
+	}),
+	(dispatch) => ({
+		sighUpModel: () => dispatch(ModalActions.sighUpModel()),
+	}),
+)(Header);

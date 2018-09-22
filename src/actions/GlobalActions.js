@@ -1,6 +1,7 @@
 import AuthActions from './AuthActions';
+import BaseActionsClass from './BaseActionsClass';
 
-class GlobalActionsClass {
+class GlobalActionsClass extends BaseActionsClass {
 
 	/**
 	 *  Actions after init app

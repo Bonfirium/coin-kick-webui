@@ -1,17 +1,14 @@
-
-
+import * as AuthApi from '../api/AuthApi';
 import GlobalReducer from '../reducers/GlobalReducer';
+import BaseActionsClass from './BaseActionsClass';
 
-class AuthActionsClass {
+class AuthActionsClass extends BaseActionsClass {
 
 	/** Initialize reducer
 	 * @constructor
 	 */
 	constructor() {
-		this.reducer = GlobalReducer;
-	}
-
-	func() {
+		super(GlobalReducer);
 	}
 
 	/**
@@ -20,7 +17,7 @@ class AuthActionsClass {
 	 */
 	me() {
 		return (dispatch) => new Promise((resolve, reject) => {
-			this.func().then((data) => {
+			AuthApi.me().then((data) => {
 				dispatch(this.reducer.actions.init(data.result));
 				resolve();
 			}).catch(() => {

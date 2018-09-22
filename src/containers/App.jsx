@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Header from '../components/header.component';
-import MainPage from '../components/pages/main-page.component';
+import Header from '../components/header';
 
 class App extends React.Component {
 
@@ -11,7 +10,6 @@ class App extends React.Component {
 		return (
 			<div className="global-wrapper">
 				<Header />
-				<MainPage />
 				{children}
 			</div>
 		);
