@@ -1,4 +1,3 @@
-import React from 'react';
 import AuthActions from './AuthActions';
 
 class GlobalActionsClass {
@@ -44,6 +43,7 @@ class GlobalActionsClass {
 			});
 		});
 	}
+
 }
 
 const GlobalActions = new GlobalActionsClass();

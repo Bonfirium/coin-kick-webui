@@ -1,5 +1,7 @@
 import thunk from 'redux-thunk';
-import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
+import {
+	applyMiddleware, combineReducers, createStore, compose,
+} from 'redux';
 
 import { routerMiddleware, routerReducer } from 'react-router-redux';
 
