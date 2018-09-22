@@ -4,7 +4,7 @@ export default class MainPage extends React.Component {
 
 	render() {
 		return (
-			<span>qweasdzxc</span>
+			<span></span>
 		);
 	}
 
