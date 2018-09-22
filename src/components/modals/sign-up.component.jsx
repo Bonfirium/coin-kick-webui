@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class SignUp extends React.Component {
+export default class SignUpComponent extends React.Component {
 
 	render() {
 		return (
