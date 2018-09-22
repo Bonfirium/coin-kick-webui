@@ -1,2 +1,3 @@
 // eslint-disable-next-line import/prefer-default-export
-export const DASHBOARD_PATH = '/';
+export const MAIN_PATH = '/';
+export const DASHBOARD_PATH = '/dashboard';

@@ -1,6 +1,10 @@
+/* eslint-disable import/no-cycle */
 import * as AuthApi from '../api/AuthApi';
-import GlobalReducer from '../reducers/GlobalReducer';
+import AuthReducer from '../reducers/AuthReducer';
 import BaseActionsClass from './BaseActionsClass';
+import GlobalActions from './GlobalActions';
+import { DASHBOARD_PATH } from '../constants/RouterConstants';
+import history from '../history';
 
 class AuthActionsClass extends BaseActionsClass {
 
@@ -8,7 +12,7 @@ class AuthActionsClass extends BaseActionsClass {
 	 * @constructor
 	 */
 	constructor() {
-		super(GlobalReducer);
+		super(AuthReducer);
 	}
 
 	/**
@@ -17,8 +21,8 @@ class AuthActionsClass extends BaseActionsClass {
 	 */
 	me() {
 		return (dispatch) => new Promise((resolve, reject) => {
-			AuthApi.me().then((data) => {
-				dispatch(this.reducer.actions.init(data.result));
+			AuthApi.me().then((response) => {
+				dispatch(this.reducer.actions.init(response.result));
 				resolve();
 			}).catch(() => {
 				dispatch(this.reducer.actions.clear());
@@ -26,6 +30,30 @@ class AuthActionsClass extends BaseActionsClass {
 			});
 		});
 	}
+
+	onSignIn(data) {
+		return (dispatch) => new Promise((resolve, reject) => {
+			AuthApi.signIn({ data }).then(() => {
+				dispatch(GlobalActions.init()).then(() => {
+
+					const redirectUrl = DASHBOARD_PATH;
+
+					history.push(redirectUrl);
+				});
+			}).catch((error) => reject(error));
+		});
+	}
+
+	onSignUp(data) {
+		return (dispatch) => new Promise((resolve) => {
+			AuthApi.signUp({ data }).then(() => {
+				this.onSignIn(data);
+				dispatch(push('/dashboard'));
+				resolve();
+			});
+		});
+	}
+
 
 }
 
