@@ -15,7 +15,7 @@ export default createModule({
 		..._.cloneDeep(TransformModules(DEFAULT_FIELDS)),
 		init: {
 			reducer: (state, { payload }) => {
-				state = state.set('id', payload.id || null);
+				state = state.set('id', payload._id || null);
 				state = state.set('email', payload.email || null);
 				return state;
 			},
