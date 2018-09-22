@@ -1,8 +1,8 @@
 /* eslint-disable import/no-cycle */
+import { push } from 'react-router-redux';
 import * as AuthApi from '../api/AuthApi';
 import AuthReducer from '../reducers/AuthReducer';
 import BaseActionsClass from './BaseActionsClass';
-import GlobalActions from './GlobalActions';
 import { DASHBOARD_PATH } from '../constants/RouterConstants';
 import history from '../history';
 
@@ -34,7 +34,7 @@ class AuthActionsClass extends BaseActionsClass {
 	onSignIn(data) {
 		return (dispatch) => new Promise((resolve, reject) => {
 			AuthApi.signIn({ data }).then(() => {
-				dispatch(GlobalActions.init()).then(() => {
+				dispatch(this.me()).then(() => {
 
 					const redirectUrl = DASHBOARD_PATH;
 

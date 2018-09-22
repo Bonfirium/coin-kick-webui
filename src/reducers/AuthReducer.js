@@ -1,5 +1,5 @@
 import { createModule } from 'redux-modules';
-import { List, Map } from 'immutable';
+import { Map } from 'immutable';
 import _ from 'lodash';
 import TransformModules from '../utils/TransformModules';
 
