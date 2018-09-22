@@ -8,6 +8,15 @@
     padding: 10px;
     background-color: #FFF;
     text-align: center;
+    &.unactive {
+        top: 32px;
+        opacity: 0;
+        z-index: -1;
+    }
+    &.active {
+        opacity: 1;
+    }
+    // transition: all 0.7s ease-in-out 0s;
     h3 {
         margin-left: 15px;
         text-align: left;
