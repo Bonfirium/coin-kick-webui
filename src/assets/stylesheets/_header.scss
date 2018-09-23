@@ -36,11 +36,14 @@
                     button {
                         padding: 10px 15px;
                     }
-                    .user_img {
-                        width: 60px;
-                        height: 60px;
-                        border-radius: 50%;
+                    .user_col_container1 {
+                        .user_img {
+                            width: 60px;
+                            height: 60px;
+                            border-radius: 50%;
+                        }
                     }
+                    
                 }
             }
             .head_item {
