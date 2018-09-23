@@ -16,7 +16,7 @@ class BlogActions extends BaseActionsClass {
 	getProjects() {
 		return (dispatch) => new Promise((resolve, reject) => {
 			BlogApi.getProjects().then((response) => {
-				dispatch(this.reducer.actions.setProjects(response.result));
+				dispatch(this.reducer.actions.setProjects(response.result.items));
 				resolve(response);
 			}).catch((error) => {
 				ToastActions.toastError(error.message);

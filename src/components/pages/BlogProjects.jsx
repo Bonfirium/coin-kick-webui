@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import BlogActions from '../../../actions/BlogActions';
-import Img1 from '../../../assets/images/1.png';
-import Img2 from '../../../assets/images/3.png';
-import Img3 from '../../../assets/images/2.png';
+import BlogActions from '../../actions/BlogActions';
+import Img1 from '../../assets/images/1.png';
+import Img2 from '../../assets/images/3.png';
+import Img3 from '../../assets/images/2.png';
 
 class BlogProjects extends React.Component {
 
@@ -15,6 +15,9 @@ class BlogProjects extends React.Component {
 
 	getPostList() {
 		const { projects } = this.props;
+		if (!projects) {
+			return <div />;
+		}
 		return projects.map(({ title, description }) => (
 			<div key={title}>
 				<div className="bg_img" />

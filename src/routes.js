@@ -14,7 +14,7 @@ import AuthRoute from './containers/AuthRoute';
 import MainPage from './components/pages/MainPage';
 import Dashboard from './components/pages/Dashbord';
 import Coins from './components/pages/Coins';
-import Blog from './components/pages/blog/List';
+import Blog from './components/pages/BlogProjects';
 
 export default class Routes extends React.Component {
 
