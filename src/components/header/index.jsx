@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import SignInModal from '../modals/SignInModal';
 import SignUpModal from '../modals/SignUpModal';
 import AuthActions from '../../actions/AuthActions';
+import {
+	MAIN_PATH,
+	DASHBOARD_PATH,
+} from '../../constants/RouterConstants';
 
 class Header extends React.Component {
 
@@ -70,23 +74,14 @@ class Header extends React.Component {
 						</div>
 						<div className="head_item-container">
 							<div className="head_line" />
-							<a className="head_item" href="">Новое</a>
+							<a className="head_item" href={MAIN_PATH}>Новое</a>
 							<div className="head_line" />
 							<a className="head_item">Топ</a>
 							<div className="head_line long" />
-							<a className="head_item only_auth" href="">Блог</a>
-							<div className="head_line only_auth" />
-							<a className="head_item only_auth">Дашборд</a>
-							<div className="head_line only_auth" />
-							<div class="user_container">
-      					<div class="user_col_container">
-          				<h4>Никита Латкович</h4>
-          				<button>Выход</button>
-      					</div>
-      					<div class="user_col_container1">
-          				<img class="user_img" src="" alt=""/>
-      					</div>
-  						</div>
+							<a className="head_item">Блог</a>
+							<div className="head_line" />
+							<a className="head_item" href={DASHBOARD_PATH}>Дашборд</a>
+							<div className="head_line" />
 							<div id="empty" />
 						</div>
 					</div>
