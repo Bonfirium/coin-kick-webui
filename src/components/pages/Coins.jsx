@@ -86,6 +86,21 @@ export default class Coins extends React.Component {
                 <h4>Summary</h4>
                 <h4>$ 5 987.00</h4>
             </div>
+
+        <div className="pop-up_coins">
+            <div className="out_container">
+                <div className="out_img"></div>
+            </div>
+            <h4>Депозит</h4>
+            <p>It’s been a while, have you read any new books lately?</p>
+            <form action="">
+                <input type="checkbox"/>
+                <p>Я ознакомлен и согласен с условиями</p>
+            </form>
+            
+            <button className="btn">Сгенерировать данные</button>
+        </div>
+
         </div>
     );
   }
