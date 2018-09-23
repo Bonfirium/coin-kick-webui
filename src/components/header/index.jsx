@@ -109,7 +109,7 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
-	userId: false,
+	userId: '',
 };
 
 export default connect(
