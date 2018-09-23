@@ -5,6 +5,7 @@ import {
 	MAIN_PATH,
 	DASHBOARD_PATH,
 	WALLET_PATH,
+	BLOG_PATH,
 } from './constants/RouterConstants';
 
 import App from './containers/App';
@@ -13,6 +14,7 @@ import AuthRoute from './containers/AuthRoute';
 import MainPage from './components/pages/MainPage';
 import Dashboard from './components/pages/Dashbord';
 import Coins from './components/pages/Coins';
+import Blog from './components/pages/blog/List';
 
 export default class Routes extends React.Component {
 
@@ -25,6 +27,7 @@ export default class Routes extends React.Component {
 						<Switch>
 							<Route exact path={DASHBOARD_PATH} component={Dashboard} />
 							<Route exact path={WALLET_PATH} component={Coins} />
+							<Route exact path={BLOG_PATH} component={Blog} />
 						</Switch>
 					</AuthRoute>
 				</Switch>
