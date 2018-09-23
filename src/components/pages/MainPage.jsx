@@ -6,10 +6,7 @@ export default class MainPage extends React.Component {
 
 	render() {
 		return (
-			<React.Fragment>
-				<Dashbord />
-				<Coins />
-			</React.Fragment>
+			<Coins />
 		);
 	}
 
