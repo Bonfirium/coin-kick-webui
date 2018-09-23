@@ -48,7 +48,7 @@ class AuthActionsClass extends BaseActionsClass {
 		return (dispatch) => new Promise((resolve) => {
 			AuthApi.signUp({ data }).then(() => {
 				this.onSignIn(data);
-				dispatch(push('/dashboard'));
+				dispatch(push('/Dashboard'));
 				resolve();
 			});
 		});
