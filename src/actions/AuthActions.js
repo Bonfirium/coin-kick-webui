@@ -1,5 +1,4 @@
 /* eslint-disable import/no-cycle */
-import { push } from 'react-router-redux';
 import * as AuthApi from '../api/AuthApi';
 import AuthReducer from '../reducers/AuthReducer';
 import BaseActionsClass from './BaseActionsClass';
@@ -47,8 +46,20 @@ class AuthActionsClass extends BaseActionsClass {
 	onSignUp(data) {
 		return (dispatch) => new Promise((resolve) => {
 			AuthApi.signUp({ data }).then(() => {
-				this.onSignIn(data);
-				dispatch(push('/Dashboard'));
+				dispatch(this.me()).then(() => {
+
+					const redirectUrl = DASHBOARD_PATH;
+
+					history.push(redirectUrl);
+				});
+				resolve();
+			});
+		});
+	}
+
+	onSignOut() {
+		return () => new Promise((resolve) => {
+			AuthApi.signOut().then(() => {
 				resolve();
 			});
 		});
