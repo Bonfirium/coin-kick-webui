@@ -83,8 +83,8 @@ class Header extends React.Component {
           				<h4>Никита Латкович</h4>
           				<button>Выход</button>
       					</div>
-      					<div class="user_col_container">
-          				<img class="user_img" src="" alt="">
+      					<div class="user_col_container1">
+          				<img class="user_img" src="" alt=""/>
       					</div>
   						</div>
 							<div id="empty" />
