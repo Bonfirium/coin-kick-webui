@@ -35,14 +35,13 @@ class UserActionsClass extends BaseActionsClass {
 	 * @returns {function(*=, *): Promise<any>}
 	 */
 	setUser(data) {
-		return (dispatch) => new Promise((resolve, reject) => {
+		return () => new Promise((resolve, reject) => {
 			UserApi.setUser({ data }).then((response) => {
 				console.log('set response');
 				console.log(response);
 				this.getUser();
 				resolve();
 			}).catch(() => {
-				dispatch(this.reducer.actions.clear());
 				reject();
 			});
 		});

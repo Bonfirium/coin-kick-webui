@@ -6,11 +6,6 @@ import UserActions from '../../actions/UserActions';
 
 class Dashboard extends React.Component {
 
-	componentDidMount() {
-		const { getUser } = this.props;
-		getUser();
-	}
-
 	formSubmit(e) {
 		e.preventDefault();
 
@@ -85,7 +80,6 @@ Dashboard.propTypes = {
 	email: PropTypes.string,
 	displayName: PropTypes.string,
 	setUser: PropTypes.func.isRequired,
-	getUser: PropTypes.func.isRequired,
 };
 
 Dashboard.defaultProps = {
@@ -100,6 +94,5 @@ export default connect(
 	}),
 	(dispatch) => ({
 		setUser: (data) => dispatch(UserActions.setUser(data)),
-		getUser: () => dispatch(UserActions.getUser()),
 	}),
 )(Dashboard);

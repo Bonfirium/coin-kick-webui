@@ -14,18 +14,11 @@ export default createModule({
 	initialState: _.cloneDeep(DEFAULT_FIELDS),
 	transformations: {
 		..._.cloneDeep(TransformModules(DEFAULT_FIELDS)),
-		init: {
-			reducer: (state, { payload }) => {
-				state = state.set('id', payload._id || null);
-				state = state.set('email', payload.email || null);
-				return state;
-			},
-		},
 		setUser: {
 			reducer: (state, { payload }) => {
 				state = state.set('id', payload._id || null);
 				state = state.set('email', payload.email || null);
-				state = state.set('email', payload.displayName || null);
+				state = state.set('displayName', payload.displayName || null);
 				return state;
 			},
 		},
