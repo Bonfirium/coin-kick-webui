@@ -4,6 +4,7 @@
 @import "_dashbord";
 @import "_coins";
 @import "_blog";
+@import "_headpage";
 
 
 body, html {
@@ -41,4 +42,20 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .d-none {
     display: none !important;
+}
+
+.penis_container {
+  margin: 10px;
+  .penis {
+    display: block;
+    width: 150px;
+    height: 40px;
+    margin: 0 auto;
+  }
+  .qr_photo {
+    height: 150px;
+    width: 150px;
+    display: block;
+    margin: 10px auto;
+  }
 }
