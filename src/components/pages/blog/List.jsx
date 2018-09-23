@@ -1,10 +1,9 @@
 import React from 'react';
-import BlogActions from '../../../actions/BlogActions';
 import PropTypes from "prop-types";
-import connect from "react-redux/es/connect/connect";
-import UserActions from "../../../actions/UserActions";
+import { connect } from "react-redux";
+import BlogActions from "../../../actions/BlogActions";
 
-export default class BlogProjects extends React.Component {
+class BlogProjects extends React.Component {
 
 	createList(projects) {
 		return projects.map(({ title, description }) => (
@@ -36,10 +35,10 @@ BlogProjects.defaultProps = {
 
 export default connect(
 	(state) => ({
-		projects: state.blog.get('projects'),
+		projects: state.auth.get('projects'),
 	}),
 	(dispatch) => ({
-		getProjects: (data) => dispatch(BlogActions.getProjects(data)),
+		getProjects: (data) => dispatch(BlogActions.getProjects({data})),
 	}),
 )(BlogProjects);
 

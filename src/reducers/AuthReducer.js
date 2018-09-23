@@ -5,6 +5,7 @@ import TransformModules from '../utils/TransformModules';
 
 const DEFAULT_FIELDS = Map({
 	user: null,
+	projects: null,
 });
 
 export default createModule({
@@ -15,6 +16,12 @@ export default createModule({
 		setUser: {
 			reducer: (state, { payload }) => {
 				state = state.set('user', payload || null);
+				return state;
+			},
+		},
+		setProjects: {
+			reducer: (state, { payload }) => {
+				state = state.set('projects', payload || null);
 				return state;
 			},
 		},

@@ -16,13 +16,7 @@ export default class Blog extends React.Component {
 
 
 						<div className="col_center">
-							<p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisinuli
-
-
-								
-<span><a href="">learn more...</a></span>
-							</p>
+							<p><span><a href="">learn more...</a></span></p>
 						</div>
 						<div className="col_right">
 							<img className="pan" src="" alt="" />
@@ -50,6 +44,9 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 						<div className="col_center">
 							<p>
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisinuli
+
+
+								
 <span><a href="">learn more...</a></span>
 							</p>
 						</div>

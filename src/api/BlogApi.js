@@ -2,7 +2,7 @@
 import { get, post } from '../utils/Api';
 
 export const getProjects = (params = {}) => new Promise((resolve, reject) => {
-	get('/api/blog/').send(params).then((data) => {
+	get('/api/blog/', params.data).then((data) => {
 		resolve(data);
 	}).catch((error) => {
 		reject(error);
@@ -16,7 +16,7 @@ export const getProject = (projectId) => new Promise((resolve, reject) => {
 });
 
 export const createProject = (params = {}) => new Promise((resolve, reject) => {
-	post('/api/blog').send(params)
+	post('/api/blog', params.data)
 		.then((data) => resolve(data))
 		.catch((error) => reject(error));
 });
