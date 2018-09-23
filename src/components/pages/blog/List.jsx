@@ -8,128 +8,47 @@ import Img3 from '../../../assets/images/2.png';
 
 class BlogProjects extends React.Component {
 
-	createList(projects) {
+	componentDidMount() {
+		const { getProjects } = this.props;
+		getProjects();
+	}
+
+	getPostList() {
+		const { projects } = this.props;
 		return projects.map(({ title, description }) => (
-			<div>
-				<h2>{title}</h2>
-				<div>{description}</div>
+			<div key={title}>
+				<div className="bg_img" />
+				<div className="blog_content">
+					<div className="col_left">
+						<h3>{title}</h3>
+					</div>
+					<div className="col_center">
+						{description}
+						<p><span><a href="">learn more...</a></span></p>
+					</div>
+					<div className="col_right">
+						<img className="pan" src={Img1} alt="" />
+						<div className="img_container">
+							<div>
+								<img src={Img2} alt="" />
+								<p>253</p>
+							</div>
+							<div>
+								<img src={Img3} alt="" className="heart" />
+								<p>47</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		));
 	}
 
 	render() {
 		return (
-
 			<div id="blog" className="blog_container">
-				<div>
-					<div className="bg_img" />
-					<div className="blog_content">
-						<div className="col_left">
-							<h3>Coffe</h3>
-							<p>by Alex1488</p>
-							<h5>$ 1569.00</h5>
-						</div>
-
-
-						<div className="col_center">
-							<p><span><a href="">learn more...</a></span></p>
-						</div>
-						<div className="col_right">
-							<img className="pan" src={Img1} alt="" />
-							<div className="img_container">
-								<div>
-									<img src={Img2} alt="" />
-									<p>253</p>
-								</div>
-								<div>
-									<img src={Img3} alt="" className="heart" />
-									<p>47</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div>
-					<div className="bg_img" />
-					<div className="blog_content">
-						<div className="col_left">
-							<h3>Coffee</h3>
-							<p>by Alex1488</p>
-							<h5>$ 1569.00</h5>
-						</div>
-						<div className="col_center">
-							<p><span><a href="">learn more...</a></span></p>
-						</div>
-						<div className="col_right">
-							<img src={Img1} className="pan" alt="" />
-							<div className="img_container">
-								<div>
-									<img src={Img3} alt="" />
-									<p>253</p>
-								</div>
-								<div>
-									<img alt={Img2} className="heart" />
-									<p>47</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div>
-					<div className="bg_img" />
-					<div className="blog_content">
-						<div className="col_left">
-							<h3>Coffee</h3>
-							<p>by Alex1488</p>
-							<h5>$ 1569.00</h5>
-						</div>
-						<div className="col_center">
-							<p><span><a href="">learn more...</a></span></p>
-						</div>
-						<div className="col_right">
-							<img className="pan" src={Img1} alt="" />
-							<div className="img_container">
-								<div>
-									<img src={Img3} alt="" />
-									<p>253</p>
-								</div>
-								<div>
-									<img src={Img2} alt="" className="heart" />
-									<p>47</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div>
-					<div className="bg_img" />
-					<div className="blog_content">
-						<div className="col_left">
-							<h3>Coffe</h3>
-							<p>by Alex1488</p>
-							<h5>$ 1569.00</h5>
-						</div>
-						<div className="col_center">
-							<p><span><a href="">learn more...</a></span></p>
-						</div>
-						<div className="col_right">
-							<img className="pan" src={Img1} alt="" />
-							<div className="img_container">
-								<div>
-									<img src={Img3} alt="" />
-									<p>253</p>
-								</div>
-								<div>
-									<img src={Img2} alt="" className="heart" />
-									<p>47</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				{this.getPostList()}
 			</div>
-
-
 		);
 	}
 
@@ -137,7 +56,7 @@ class BlogProjects extends React.Component {
 
 BlogProjects.propTypes = {
 	projects: PropTypes.array,
-	setProjects: PropTypes.func.isRequired,
+	getProjects: PropTypes.func.isRequired,
 };
 
 BlogProjects.defaultProps = {
@@ -149,6 +68,6 @@ export default connect(
 		projects: state.auth.get('projects'),
 	}),
 	(dispatch) => ({
-		getProjects: (data) => dispatch(BlogActions.getProjects({ data })),
+		getProjects: () => dispatch(BlogActions.getProjects()),
 	}),
 )(BlogProjects);

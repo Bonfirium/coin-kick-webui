@@ -6,7 +6,7 @@ import SignUpModal from '../modals/SignUpModal';
 import AuthActions from '../../actions/AuthActions';
 import {
 	MAIN_PATH,
-	DASHBOARD_PATH,
+	DASHBOARD_PATH, BLOG_PATH,
 } from '../../constants/RouterConstants';
 
 class Header extends React.Component {
@@ -78,7 +78,7 @@ class Header extends React.Component {
 							<div className="head_line" />
 							<a className="head_item">Топ</a>
 							<div className="head_line long" />
-							<a className="head_item">Блог</a>
+							<a className="head_item" href={BLOG_PATH}>Блог</a>
 							<div className="head_line" />
 							<a className="head_item" href={DASHBOARD_PATH}>Дашборд</a>
 							<div className="head_line" />

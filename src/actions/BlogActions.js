@@ -2,7 +2,6 @@
 import * as BlogApi from '../api/BlogApi';
 import AuthReducer from '../reducers/AuthReducer';
 import BaseActionsClass from './BaseActionsClass';
-import history from '../history';
 import ToastActions from './ToastActions';
 
 class BlogActions extends BaseActionsClass {
@@ -14,9 +13,10 @@ class BlogActions extends BaseActionsClass {
 		super(AuthReducer);
 	}
 
-	getProjects(data) {
-		return () => new Promise((resolve, reject) => {
-			BlogApi.getProjects({ data }).then((response) => {
+	getProjects() {
+		return (dispatch) => new Promise((resolve, reject) => {
+			BlogApi.getProjects().then((response) => {
+				dispatch(this.reducer.actions.setProjects(response.result));
 				resolve(response);
 			}).catch((error) => {
 				ToastActions.toastError(error.message);

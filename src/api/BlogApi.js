@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import { get, post } from '../utils/Api';
 
-export const getProjects = (params = {}) => new Promise((resolve, reject) => {
-	get('/api/blog/', params.data).then((data) => {
+export const getProjects = () => new Promise((resolve, reject) => {
+	get('/api/blog/').then((data) => {
 		resolve(data);
 	}).catch((error) => {
 		reject(error);
