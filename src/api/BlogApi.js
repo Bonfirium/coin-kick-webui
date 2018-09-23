@@ -20,3 +20,9 @@ export const createProject = (params = {}) => new Promise((resolve, reject) => {
 		.then((data) => resolve(data))
 		.catch((error) => reject(error));
 });
+
+export const sendCoins = (id, value) => new Promise((resolve, reject) => {
+	post(`/api/blog/${id}/send-coin`, { value })
+		.then((data) => resolve(data))
+		.catch((error) => reject(error));
+});

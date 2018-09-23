@@ -13,12 +13,21 @@ class BlogProjects extends React.Component {
 		getProjects();
 	}
 
+	onSubmit(e, id) {
+		e.preventDefault();
+		const { sendCoins } = this.props;
+		const { value } = this.coinsInput;
+		if (value && value > 0) {
+			sendCoins(id, value);
+		}
+	}
+
 	getPostList() {
 		const { projects } = this.props;
 		if (!projects) {
 			return <div />;
 		}
-		return projects.map(({ title, description }) => (
+		return projects.map(({ title, description, id }) => (
 			<div key={title}>
 				<div className="bg_img" />
 				<div className="blog_content">
@@ -43,6 +52,17 @@ class BlogProjects extends React.Component {
 						</div>
 					</div>
 				</div>
+				<form onSubmit={(e) => this.onSubmit(e, id)}>
+					<input
+						className="reg_form"
+						type="text"
+						placeholder="Amount"
+						ref={(node) => {
+							this.coinsInput = node;
+						}}
+					/>
+					<button type="submit" className="btn" style={{ width: '125px', height: '50px' }}>Отправить токены</button>
+				</form>
 			</div>
 		));
 	}
@@ -59,6 +79,7 @@ class BlogProjects extends React.Component {
 
 BlogProjects.propTypes = {
 	projects: PropTypes.array,
+	sendCoins: PropTypes.func.isRequired,
 	getProjects: PropTypes.func.isRequired,
 };
 
@@ -71,6 +92,7 @@ export default connect(
 		projects: state.auth.get('projects'),
 	}),
 	(dispatch) => ({
+		sendCoins: (id, value) => dispatch(BlogActions.sendCoins(id, value)),
 		getProjects: () => dispatch(BlogActions.getProjects()),
 	}),
 )(BlogProjects);

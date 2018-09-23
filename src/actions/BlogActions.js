@@ -25,6 +25,18 @@ class BlogActions extends BaseActionsClass {
 		});
 	}
 
+	sendCoins(id, value) {
+		return () => new Promise((resolve, reject) => {
+			BlogApi.sendCoins(id, value).then((response) => {
+				ToastActions.toastSuccess('Монеты отправлены');
+				resolve(response);
+			}).catch((error) => {
+				ToastActions.toastError(error.message);
+				reject(error);
+			});
+		});
+	}
+
 }
 
 const AuthActions = new BlogActions();
