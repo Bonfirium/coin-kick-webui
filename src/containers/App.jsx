@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Toast from '../components/Toast';
+
 import Header from '../components/header';
 
 class App extends React.Component {
@@ -11,6 +13,7 @@ class App extends React.Component {
 			<div className="global-wrapper">
 				<Header />
 				{children}
+				<Toast />
 			</div>
 		);
 	}

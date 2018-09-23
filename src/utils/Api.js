@@ -2,6 +2,25 @@
 
 const qs = require('qs');
 
+const parseServerError = (error) => {
+	const { message } = error;
+	if (typeof message !== 'string') {
+		if (Object.keys(message).length) {
+			const firstKey = Object.keys(message)[0];
+			return {
+				status: error.status,
+				message: `${firstKey}: ${message[firstKey] ? message[firstKey][0] : 'Error'}`,
+				error: error.message,
+			};
+		}
+		if (Array.isArray(error.message) && error.message.length) {
+			return { status: error.status, message: error.message[0] };
+		}
+	}
+
+	return { status: error.status, message: error.message };
+};
+
 export function get(url, params) {
 	const query = qs.stringify(params);
 
@@ -31,7 +50,7 @@ export function get(url, params) {
 		}).then((data) => {
 			resolve(data);
 		}).catch((error) => {
-			reject(error);
+			reject(parseServerError(error));
 		});
 	});
 }
@@ -65,7 +84,7 @@ export function post(url, params) {
 		}).then((data) => {
 			resolve(data);
 		}).catch((error) => {
-			reject(error);
+			reject(parseServerError(error));
 		});
 	});
 }
@@ -100,7 +119,7 @@ export function patch(url, params) {
 		}).then((data) => {
 			resolve(data);
 		}).catch((error) => {
-			reject(error);
+			reject(parseServerError(error));
 		});
 	});
 }
@@ -135,7 +154,7 @@ export function put(url, params) {
 		}).then((data) => {
 			resolve(data);
 		}).catch((error) => {
-			reject(error);
+			reject(parseServerError(error));
 		});
 	});
 }
@@ -171,7 +190,7 @@ export function del(url, params) {
 		}).then((data) => {
 			resolve(data);
 		}).catch((error) => {
-			reject(error);
+			reject(parseServerError(error));
 		});
 	});
 }

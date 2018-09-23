@@ -4,6 +4,7 @@ import AuthReducer from '../reducers/AuthReducer';
 import BaseActionsClass from './BaseActionsClass';
 import { DASHBOARD_PATH } from '../constants/RouterConstants';
 import history from '../history';
+import ToastActions from './ToastActions';
 
 class AuthActionsClass extends BaseActionsClass {
 
@@ -21,18 +22,24 @@ class AuthActionsClass extends BaseActionsClass {
 				const redirectUrl = DASHBOARD_PATH;
 
 				history.push(redirectUrl);
-			}).catch((error) => reject(error));
+			}).catch((error) => {
+				ToastActions.toastError(error.message);
+				reject(error);
+			});
 		});
 	}
 
 	onSignUp(data) {
-		return (dispatch) => new Promise((resolve) => {
+		return (dispatch) => new Promise((resolve, reject) => {
 			AuthApi.signUp({ data }).then((response) => {
 				dispatch(this.reducer.actions.setUser(response.result));
 				const redirectUrl = DASHBOARD_PATH;
 
 				history.push(redirectUrl);
 				resolve();
+			}).catch((error) => {
+				ToastActions.toastError(error.error);
+				reject(error);
 			});
 		});
 	}
