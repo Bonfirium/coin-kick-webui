@@ -43,6 +43,20 @@ class UserActionsClass extends BaseActionsClass {
 		});
 	}
 
+	/**
+	 * Allow to set info about user on server
+	 * @returns {function(*=, *): Promise<any>}
+	 */
+	getAddress(data) {
+		return () => new Promise((resolve, reject) => {
+			UserApi.getDepositAddress({ data }).then((response) => {
+				resolve(response);
+			}).catch(() => {
+				reject();
+			});
+		});
+	}
+
 
 }
 

@@ -27,3 +27,18 @@ export const setUser = (params = {}) => new Promise((resolve, reject) => {
 		reject(error);
 	});
 });
+
+/**
+ * Get deposit address
+ * @param {Object} params
+ * @param {Object} params.data
+ * @param {String} params.data.currency
+ * @returns {Promise<any>}
+ */
+export const getDepositAddress = (params = {}) => new Promise((resolve, reject) => {
+	get('/api/user/get-deposit-address', params.data).then((data) => {
+		resolve(data);
+	}).catch((error) => {
+		reject(error);
+	});
+});
