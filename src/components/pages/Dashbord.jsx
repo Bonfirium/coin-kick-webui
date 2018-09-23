@@ -6,24 +6,24 @@ export default class dashboard extends React.Component {
 		return (
 			<div id="dashboard" className="container">
 				<div className="dashboard_content dashboard_name">
-	        		<div className="dashboard_left-container">
-	            		<img src="../../assets/images/user.png"/>  
-	        		</div>      
-	        		<div className="dashboard_right-container">
-	            		<form className="d-none" action="">
-	            			<div className="input_container">
-	            				<input type="text" placeholder="Name"/>
-	                		<img className="name_img" src="../../assets/images/user.png"  alt=""/> 
-	            			</div>
-	                		<button className="d-none">ok</button>
-	            		</form>
-	            		<p className="user_name d-none">kgaljgal</p>
-	            		<p>email@email.com</p>
-	            		<ul className="projects">
-	                		projects
-	            		</ul>
-	        		</div>      
-	    		</div>
+					<div className="dashboard_left-container">
+						<img alt="user" src="../../assets/images/user.png" />
+					</div>
+					<div className="dashboard_right-container">
+						<form className="d-none" action="">
+							<div className="input_container">
+								<input type="text" placeholder="Name" />
+								<img className="name_img" src="../../assets/images/user.png" alt="" />
+							</div>
+							<button type="submit" className="d-none">ok</button>
+						</form>
+						<p className="user_name d-none">kgaljgal</p>
+						<p>email@email.com</p>
+						<ul className="projects">
+							<li>projects</li>
+						</ul>
+					</div>
+				</div>
 				<div className="dashboard_content">
 					<div className="dashboard_content-container">
 						<p className="currency">Баланс</p>
