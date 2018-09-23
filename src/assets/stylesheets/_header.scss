@@ -25,6 +25,24 @@
             align-items: center;
             width: 100%;
             margin-right: 30px;
+            .user_container {
+                display: block;
+                .user_col_container {
+                    display: inline-block;
+                    h4 {
+                        color: black;
+                        font-size: 18px;
+                    }
+                    button {
+                        padding: 10px 15px;
+                    }
+                    .user_img {
+                        width: 60px;
+                        height: 60px;
+                        border-radius: 50%;
+                    }
+                }
+            }
             .head_item {
                 font-size: 20px;
                 font-weight: 300;
