@@ -1,12 +1,12 @@
 /* eslint-disable import/prefer-default-export */
-import { get, put } from '../utils/Api';
+import { get, patch } from '../utils/Api';
 
 /**
  * Get user from server
  * @returns {Promise<any>}
  */
-export const getUser = (id) => new Promise((resolve, reject) => {
-	get(`/api/user/${id}`).then((data) => {
+export const getUser = () => new Promise((resolve, reject) => {
+	get('/api/user/').then((data) => {
 		resolve(data);
 	}).catch((error) => {
 		reject(error);
@@ -21,7 +21,7 @@ export const getUser = (id) => new Promise((resolve, reject) => {
  * @returns {Promise<any>}
  */
 export const setUser = (params = {}) => new Promise((resolve, reject) => {
-	put('/api/user/', params.data).then((data) => {
+	patch('/api/user/displayName', params.data).then((data) => {
 		resolve(data);
 	}).catch((error) => {
 		reject(error);

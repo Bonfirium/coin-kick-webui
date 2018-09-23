@@ -14,22 +14,6 @@ class AuthActionsClass extends BaseActionsClass {
 		super(AuthReducer);
 	}
 
-	/**
-	 * Allow to get info about your profile from server
-	 * @returns {function(*=): Promise<any>}
-	 */
-	me() {
-		return (dispatch) => new Promise((resolve, reject) => {
-			AuthApi.me().then((response) => {
-				dispatch(this.reducer.actions.setUser(response.result));
-				resolve();
-			}).catch(() => {
-				dispatch(this.reducer.actions.clear());
-				reject();
-			});
-		});
-	}
-
 	onSignIn(data) {
 		return (dispatch) => new Promise((resolve, reject) => {
 			AuthApi.signIn({ data }).then((response) => {

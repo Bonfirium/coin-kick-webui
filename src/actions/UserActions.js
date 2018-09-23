@@ -17,10 +17,8 @@ class UserActionsClass extends BaseActionsClass {
 	 * @returns {function(*=, *): Promise<any>}
 	 */
 	getUser() {
-		return (dispatch, getState) => new Promise((resolve, reject) => {
-			const state = getState();
-			const id = state.auth.get('id');
-			UserApi.getUser(id).then((response) => {
+		return (dispatch) => new Promise((resolve, reject) => {
+			UserApi.getUser().then((response) => {
 				dispatch(this.reducer.actions.setUser(response.result));
 				resolve();
 			}).catch(() => {
@@ -35,11 +33,9 @@ class UserActionsClass extends BaseActionsClass {
 	 * @returns {function(*=, *): Promise<any>}
 	 */
 	setUser(data) {
-		return () => new Promise((resolve, reject) => {
-			UserApi.setUser({ data }).then((response) => {
-				console.log('set response');
-				console.log(response);
-				this.getUser();
+		return (dispatch) => new Promise((resolve, reject) => {
+			UserApi.setUser({ data }).then(() => {
+				dispatch(this.getUser());
 				resolve();
 			}).catch(() => {
 				reject();

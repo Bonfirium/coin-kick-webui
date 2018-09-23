@@ -1,4 +1,4 @@
-import AuthActions from './AuthActions';
+import UserActions from './UserActions';
 import BaseActionsClass from './BaseActionsClass';
 
 class GlobalActionsClass extends BaseActionsClass {
@@ -29,7 +29,7 @@ class GlobalActionsClass extends BaseActionsClass {
 		return (dispatch) => new Promise((resolve) => {
 			Promise.all([
 				new Promise((res, rej) => { // Check smth
-					dispatch(AuthActions.me()).then(() => {
+					dispatch(UserActions.getUser()).then(() => {
 						res();
 					}).catch((error) => {
 						rej(error);
