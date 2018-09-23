@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import connect from 'react-redux/es/connect/connect';
 import UserActions from '../../actions/UserActions';
 import ToastActions from '../../actions/ToastActions';
+import Img4 from '../../assets/images/4.png';
 
 class Coins extends React.Component {
 
@@ -102,7 +103,10 @@ class Coins extends React.Component {
 						</div>
 						<h4>{`Депозит ${currencies[currencyIndex].shortName}`}</h4>
 						{address ? (
-							<input type="text" readOnly value={address} />
+							<div className="penis_container">
+								<input type="text" className="penis" readOnly value={address} />
+								<img src={Img4} className="qr_photo" />
+							</div>
 						) : (
 							<React.Fragment>
 								<p>It’s been a while, have you read any new books lately?</p>
