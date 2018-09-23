@@ -2,6 +2,7 @@
 @import "header";
 @import "_sign-up";
 @import "_dashbord";
+@import "_coins";
 
 
 body, html {
@@ -37,6 +38,6 @@ p, h1, h2, h3, h4, h5, h6 {
   opacity: 0;
 }*/
 
-/*.d-none {
+.d-none {
     display: none;
-}*/
+}

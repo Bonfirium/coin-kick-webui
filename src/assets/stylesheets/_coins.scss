@@ -1,0 +1,99 @@
+.coins_container {
+    margin-left: 15%;
+    width: 55%;
+    height: auto;
+    padding: 2.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    .head_col, .col, .foot_col {
+        width: 95%;
+    }
+    .head_col {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 2px solid #009688;
+        h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 20px 0;
+        }
+    }
+    .col {
+        margin-top: 40px;
+        display: block;
+        .coin_col {
+            display: inline-block;
+            text-align: left;
+            width: 70%;
+            height: auto;
+            border-bottom: 2px solid #BB6B64;
+            .coin_col-container {
+                display: block;
+                p {
+                    display: inline-block;
+                    font-size: 24px;
+                    font-weight: 300;
+                    &.cash {
+                        margin-left: 60%;
+                    }    
+                }
+            }
+        }
+        .button_container {
+            display: inline-block;
+            button {
+                display: inline-block;
+                border-radius: 10px;
+                background-color: #817F7F;
+                border: 1px solid #817F7F;
+                color: #fff;
+                padding: 15px 30px;
+                font-size: 18px;
+                margin-left: 20px;
+            }
+        }
+        &:hover {
+            transform: scale(1.2);
+            background-color: #BABABA;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+            button {
+                background-color: #009688;
+                border: 1px solid #009688;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+            }
+            .coin_col {
+                border-bottom: 3px solid #BB6B64;
+            }
+        }
+        &:focus {
+            transform: scale(1.2);
+            background-color: #BABABA;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+            button {
+                background-color: #009688;
+                border: 1px solid #009688;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+            }
+            .coin_col {
+                border-bottom: 3px solid #BB6B64;
+            }
+        }
+    }
+    .foot_col {
+        width: 100%;
+        height: auto;
+        padding: 15px 0;
+        h4 {
+            margin-left:30px;
+            display: inline-block;
+            font-size: 26px;
+            font-weight: 600;
+            &:nth-child(2){
+                margin-left: 33%;
+            }
+        }
+    }
+}
