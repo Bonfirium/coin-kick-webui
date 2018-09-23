@@ -15,6 +15,30 @@ class Header extends React.Component {
 		};
 	}
 
+	onSignIn(data) {
+		const { onSignIn } = this.props;
+		onSignIn(data);
+		this.setState({
+			signUpOpen: false,
+			signInOpen: false,
+		});
+	}
+
+	onSignUp(data) {
+		const { onSignUp } = this.props;
+		onSignUp(data);
+		this.setState({
+			signUpOpen: false,
+			signInOpen: false,
+		});
+	}
+
+	onSignOut() {
+		const { onSignOut } = this.props;
+		onSignOut();
+	}
+
+
 	openSignInModal(e) {
 		e.preventDefault();
 		const { signInOpen } = this.state;
@@ -35,7 +59,7 @@ class Header extends React.Component {
 
 	render() {
 		const { signInOpen, signUpOpen } = this.state;
-		const { onSignIn, onSignUp } = this.props;
+		const { userId } = this.props;
 
 		return (
 			<React.Fragment>
@@ -59,12 +83,18 @@ class Header extends React.Component {
 						</div>
 					</div>
 					<div className="hidden head_btn-container">
-						<a className="btn btn_head" href="" onClick={(e) => this.openSignInModal(e)}>Вход</a>
-						<a className="btn btn_head" href="" onClick={(e) => this.openSighUpModal(e)}>Регистрация</a>
+						{userId ? (
+							<a className="btn btn_head" href="" onClick={(e) => this.onSignOut(e)}>Выход</a>
+						) : (
+							<React.Fragment>
+								<a className="btn btn_head" href="" onClick={(e) => this.openSignInModal(e)}>Вход</a>
+								<a className="btn btn_head" href="" onClick={(e) => this.openSighUpModal(e)}>Регистрация</a>
+							</React.Fragment>
+						)}
 					</div>
 				</div>
-				<SignInModal isOpen={signInOpen} onSubmit={(data) => onSignIn(data)} />
-				<SignUpModal isOpen={signUpOpen} onSubmit={(data) => onSignUp(data)} />
+				<SignInModal isOpen={signInOpen} onSubmit={(data) => this.onSignIn(data)} />
+				<SignUpModal isOpen={signUpOpen} onSubmit={(data) => this.onSignUp(data)} />
 			</React.Fragment>
 		);
 	}
@@ -72,15 +102,22 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
+	userId: PropTypes.string,
+	onSignOut: PropTypes.func.isRequired,
 	onSignIn: PropTypes.func.isRequired,
 	onSignUp: PropTypes.func.isRequired,
 };
 
-export default connect(
-	() => ({
+Header.defaultProps = {
+	userId: '',
+};
 
+export default connect(
+	(state) => ({
+		userId: state.auth.get('id'),
 	}),
 	(dispatch) => ({
+		onSignOut: () => dispatch(AuthActions.onSignOut()),
 		onSignIn: (data) => dispatch(AuthActions.onSignIn(data)),
 		onSignUp: (data) => dispatch(AuthActions.onSignUp(data)),
 	}),

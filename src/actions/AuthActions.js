@@ -1,5 +1,4 @@
 /* eslint-disable import/no-cycle */
-import { push } from 'react-router-redux';
 import * as AuthApi from '../api/AuthApi';
 import AuthReducer from '../reducers/AuthReducer';
 import BaseActionsClass from './BaseActionsClass';
@@ -22,7 +21,7 @@ class AuthActionsClass extends BaseActionsClass {
 	me() {
 		return (dispatch) => new Promise((resolve, reject) => {
 			AuthApi.me().then((response) => {
-				dispatch(this.reducer.actions.init(response.result));
+				dispatch(this.reducer.actions.setUser(response.result));
 				resolve();
 			}).catch(() => {
 				dispatch(this.reducer.actions.clear());
@@ -33,22 +32,30 @@ class AuthActionsClass extends BaseActionsClass {
 
 	onSignIn(data) {
 		return (dispatch) => new Promise((resolve, reject) => {
-			AuthApi.signIn({ data }).then(() => {
-				dispatch(this.me()).then(() => {
+			AuthApi.signIn({ data }).then((response) => {
+				dispatch(this.reducer.actions.setUser(response.result));
+				const redirectUrl = DASHBOARD_PATH;
 
-					const redirectUrl = DASHBOARD_PATH;
-
-					history.push(redirectUrl);
-				});
+				history.push(redirectUrl);
 			}).catch((error) => reject(error));
 		});
 	}
 
 	onSignUp(data) {
 		return (dispatch) => new Promise((resolve) => {
-			AuthApi.signUp({ data }).then(() => {
-				this.onSignIn(data);
-				dispatch(push('/dashboard'));
+			AuthApi.signUp({ data }).then((response) => {
+				dispatch(this.reducer.actions.setUser(response.result));
+				const redirectUrl = DASHBOARD_PATH;
+
+				history.push(redirectUrl);
+				resolve();
+			});
+		});
+	}
+
+	onSignOut() {
+		return () => new Promise((resolve) => {
+			AuthApi.signOut().then(() => {
 				resolve();
 			});
 		});

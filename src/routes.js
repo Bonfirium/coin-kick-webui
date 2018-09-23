@@ -7,6 +7,7 @@ import {
 } from './constants/RouterConstants';
 
 import App from './containers/App';
+import AuthRoute from './containers/AuthRoute';
 
 import MainPage from './components/pages/MainPage';
 import Dashboard from './components/pages/Dashbord';
@@ -15,12 +16,16 @@ export default class Routes extends React.Component {
 
 	render() {
 		return (
-			<Switch>
-				<App>
+			<App>
+				<Switch>
 					<Route exact path={MAIN_PATH} component={MainPage} />
-					<Route exact path={DASHBOARD_PATH} component={Dashboard} />
-				</App>
-			</Switch>
+					<AuthRoute>
+						<Switch>
+							<Route exact path={DASHBOARD_PATH} component={Dashboard} />
+						</Switch>
+					</AuthRoute>
+				</Switch>
+			</App>
 		);
 	}
 

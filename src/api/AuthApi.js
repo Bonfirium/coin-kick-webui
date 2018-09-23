@@ -45,3 +45,15 @@ export const signUp = (params = {}) => new Promise((resolve, reject) => {
 		reject(error);
 	});
 });
+
+/**
+ * Logout
+ * @returns {Promise<any>}
+ */
+export const signOut = () => new Promise((resolve, reject) => {
+	get('/api/auth/sign-out').then((data) => {
+		resolve(data);
+	}).catch((error) => {
+		reject(error);
+	});
+});

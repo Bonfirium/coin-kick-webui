@@ -36,9 +36,7 @@ class GlobalActionsClass extends BaseActionsClass {
 					});
 				}),
 			]).then((data) => {
-				dispatch(this.afterInit()).then(() => {
-					resolve(data);
-				});
+				resolve(data);
 			}).catch((error) => {
 				resolve(error);
 			});

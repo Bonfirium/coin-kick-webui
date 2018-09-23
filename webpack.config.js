@@ -41,14 +41,32 @@ module.exports = {
 			test: /\.jsx$/,
 			include: /src/,
 			use: { loader: 'babel-loader' },
-		}, {
+		},
+		{
 			test: /\.scss$/,
-			use: [
-				'style-loader', // or MiniCssExtractPlugin.loader
-				{ loader: 'css-loader', options: { sourceMap: true, importLoaders: 1 } },
-				{ loader: 'sass-loader', options: { sourceMap: true } },
-			],
-		}, {
+			use: extractSass.extract({
+				use: [{
+					loader: 'css-loader',
+				}, {
+					loader: 'sass-loader',
+				}],
+				// use style-loader in development
+				fallback: 'style-loader',
+			}),
+		},
+		{
+			test: /\.css$/,
+			use: extractSass.extract({
+				use: [
+					{
+						loader: 'css-loader',
+					},
+				],
+				// use style-loader in development
+				fallback: 'style-loader',
+			}),
+		},
+		{
 			test: /\.(png|woff|woff2|eot|ttf|otf|svg)$/,
 			loader: 'url-loader?limit=100000',
 		}],
