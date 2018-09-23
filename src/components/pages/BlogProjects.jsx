@@ -10,13 +10,16 @@ class BlogProjects extends React.Component {
 
 	componentDidMount() {
 		const { getProjects } = this.props;
+		this.coinsInput = {};
 		getProjects();
 	}
 
 	onSubmit(e, id) {
 		e.preventDefault();
 		const { sendCoins } = this.props;
-		const { value } = this.coinsInput;
+		const { value } = this.coinsInput[id];
+		console.log(value);
+		console.log(id);
 		if (value && value > 0) {
 			sendCoins(id, value);
 		}
@@ -27,7 +30,7 @@ class BlogProjects extends React.Component {
 		if (!projects) {
 			return <div />;
 		}
-		return projects.map(({ title, description, id }) => (
+		return projects.map(({ title, description, _id }) => (
 			<div key={title}>
 				<div className="bg_img" />
 				<div className="blog_content">
@@ -52,13 +55,13 @@ class BlogProjects extends React.Component {
 						</div>
 					</div>
 				</div>
-				<form onSubmit={(e) => this.onSubmit(e, id)}>
+				<form onSubmit={(e) => this.onSubmit(e, _id)}>
 					<input
 						className="reg_form"
 						type="text"
 						placeholder="Amount"
 						ref={(node) => {
-							this.coinsInput = node;
+							this.coinsInput[_id] = node;
 						}}
 					/>
 					<button type="submit" className="btn" style={{ width: '125px', height: '50px' }}>Отправить токены</button>
