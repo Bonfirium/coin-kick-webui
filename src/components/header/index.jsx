@@ -59,7 +59,7 @@ class Header extends React.Component {
 
 	render() {
 		const { signInOpen, signUpOpen } = this.state;
-		const { userId } = this.props;
+		const { user } = this.props;
 
 		return (
 			<React.Fragment>
@@ -83,7 +83,7 @@ class Header extends React.Component {
 						</div>
 					</div>
 					<div className="hidden head_btn-container">
-						{userId ? (
+						{user ? (
 							<a className="btn btn_head" href="" onClick={(e) => this.onSignOut(e)}>Выход</a>
 						) : (
 							<React.Fragment>
@@ -102,19 +102,19 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-	userId: PropTypes.string,
+	user: PropTypes.object,
 	onSignOut: PropTypes.func.isRequired,
 	onSignIn: PropTypes.func.isRequired,
 	onSignUp: PropTypes.func.isRequired,
 };
 
 Header.defaultProps = {
-	userId: '',
+	user: '',
 };
 
 export default connect(
 	(state) => ({
-		userId: state.auth.get('id'),
+		user: state.auth.get('user'),
 	}),
 	(dispatch) => ({
 		onSignOut: () => dispatch(AuthActions.onSignOut()),

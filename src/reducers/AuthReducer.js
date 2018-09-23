@@ -4,9 +4,7 @@ import _ from 'lodash';
 import TransformModules from '../utils/TransformModules';
 
 const DEFAULT_FIELDS = Map({
-	id: null,
-	email: null,
-	displayName: null,
+	user: null,
 });
 
 export default createModule({
@@ -16,9 +14,7 @@ export default createModule({
 		..._.cloneDeep(TransformModules(DEFAULT_FIELDS)),
 		setUser: {
 			reducer: (state, { payload }) => {
-				state = state.set('id', payload._id || null);
-				state = state.set('email', payload.email || null);
-				state = state.set('displayName', payload.displayName || null);
+				state = state.set('user', payload || null);
 				return state;
 			},
 		},

@@ -6,6 +6,26 @@ import UserActions from '../../actions/UserActions';
 
 class Dashboard extends React.Component {
 
+	getSumBalance(currencies) {
+		const arr = currencies.filter((_, index) => index < 3);
+		const sumBalance = arr.reduce((sum, currency) => parseFloat(currency.balance) + sum, 0);
+		return (
+			<div className="dashboard_content-container">
+				<p className="currency">Баланс</p>
+				<p className="value">{`$ ${sumBalance}`}</p>
+			</div>
+		);
+	}
+
+	getDashboardContent(currencies) {
+		return currencies.filter((_, index) => index < 3).map((currency) => (
+			<div className="dashboard_content-container" key={currency.name}>
+				<p className="currency">{currency.shortName}</p>
+				<p className="value">{`$ ${currency.balance}`}</p>
+			</div>
+		));
+	}
+
 	formSubmit(e) {
 		e.preventDefault();
 
@@ -19,7 +39,8 @@ class Dashboard extends React.Component {
 	}
 
 	render() {
-		const { email, displayName } = this.props;
+		const { user } = this.props;
+		const { email, displayName, currencies } = user;
 		return (
 			<div id="dashboard" className="container">
 				<div className="dashboard_content dashboard_name">
@@ -27,7 +48,7 @@ class Dashboard extends React.Component {
 						<img alt="user" src={ponyImage} />
 					</div>
 					<div className="dashboard_right-container">
-						<form className="d-none" onSubmit={(e) => this.formSubmit(e)}>
+						<form className={displayName ? 'd-none' : ''} onSubmit={(e) => this.formSubmit(e)}>
 							<div className="input_container">
 								<input
 									type="text"
@@ -38,9 +59,9 @@ class Dashboard extends React.Component {
 								/>
 								<img className="name_img" src={ponyImage} alt="" />
 							</div>
-							<button type="submit" className="d-none">ok</button>
+							<button type="submit" className={displayName ? 'd-none' : ''}>ok</button>
 						</form>
-						<p className="user_name d-none">{displayName || 'no name'}</p>
+						<p className={displayName ? 'user_name' : 'user_name d-none'}>{displayName || 'no name'}</p>
 						<p>{email || 'no email'}</p>
 						<ul className="projects">
 							<li>projects</li>
@@ -48,22 +69,8 @@ class Dashboard extends React.Component {
 					</div>
 				</div>
 				<div className="dashboard_content">
-					<div className="dashboard_content-container">
-						<p className="currency">Баланс</p>
-						<p className="value">$ 10.00</p>
-					</div>
-					<div className="dashboard_content-container">
-						<p className="currency">BTC</p>
-						<p className="value">$ 10.00</p>
-					</div>
-					<div className="dashboard_content-container">
-						<p className="currency">LTC</p>
-						<p className="value">$ 10.00</p>
-					</div>
-					<div className="dashboard_content-container">
-						<p className="currency">ETH</p>
-						<p className="value">$ 10.00</p>
-					</div>
+					{this.getSumBalance(currencies)}
+					{this.getDashboardContent(currencies)}
 					<a className="btn" href="">
 						<div className="circle" />
 						<div className="circle" />
@@ -77,20 +84,17 @@ class Dashboard extends React.Component {
 }
 
 Dashboard.propTypes = {
-	email: PropTypes.string,
-	displayName: PropTypes.string,
+	user: PropTypes.object,
 	setUser: PropTypes.func.isRequired,
 };
 
 Dashboard.defaultProps = {
-	email: '',
-	displayName: '',
+	user: null,
 };
 
 export default connect(
 	(state) => ({
-		email: state.auth.get('email'),
-		displayName: state.auth.get('displayName'),
+		user: state.auth.get('user'),
 	}),
 	(dispatch) => ({
 		setUser: (data) => dispatch(UserActions.setUser(data)),

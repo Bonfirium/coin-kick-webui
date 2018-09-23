@@ -8,9 +8,9 @@ import { MAIN_PATH } from '../constants/RouterConstants';
 class AuthRoute extends React.Component {
 
 	render() {
-		const { userId, children } = this.props;
+		const { user, children } = this.props;
 
-		if (!userId || userId.length === 0) {
+		if (!user) {
 			return <Redirect to={MAIN_PATH} />;
 		}
 
@@ -20,14 +20,14 @@ class AuthRoute extends React.Component {
 }
 
 AuthRoute.propTypes = {
-	userId: PropTypes.string,
+	user: PropTypes.object,
 	children: PropTypes.any.isRequired,
 };
 
 AuthRoute.defaultProps = {
-	userId: null,
+	user: null,
 };
 
 export default connect((state) => ({
-	userId: state.auth.get('id'),
+	user: state.auth.get('user'),
 }))(AuthRoute);
