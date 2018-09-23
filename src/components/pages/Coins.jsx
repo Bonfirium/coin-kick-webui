@@ -1,8 +1,74 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import connect from 'react-redux/es/connect/connect';
+import UserActions from '../../actions/UserActions';
 
-export default class Coins extends React.Component {
+class Coins extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			isAgreement: false,
+			currencyIndex: 0,
+		};
+	}
+
+	onSubmit(e) {
+		e.preventDefault();
+	}
+
+	getCurrenciesList(currencies) {
+		return currencies.map((currency, index) => (
+			<div className="col" key={currency.name}>
+				<div className="coin_col">
+					<div className="coin_col-container">
+						<p>{currency.shortName}</p>
+						<p className="cash">{`$ ${currency.balance}`}</p>
+					</div>
+				</div>
+				<div className="button_container">
+					<button type="button" className="depo">Вывод</button>
+					<button type="button" className="deposit" onClick={() => this.openAgreement(index)}>Депозит</button>
+				</div>
+			</div>
+		));
+	}
+
+	getSum(currencies) {
+		const sumBalance = currencies.reduce((sum, currency) => parseFloat(currency.balance) + sum, 0);
+		return (
+			<div className="foot_col">
+				<h4>Сумма</h4>
+				<h4>{`$ ${sumBalance}`}</h4>
+			</div>
+		);
+	}
+
+	openAgreement(index) {
+		const { currencyIndex, isAgreement } = this.state;
+		if (currencyIndex === index && isAgreement) {
+			this.setState({
+				isAgreement: false,
+			});
+		} else {
+			this.setState({
+				isAgreement: true,
+				currencyIndex: index,
+			});
+		}
+	}
+
+	closeAgreement() {
+		this.setState({
+			isAgreement: false,
+		});
+	}
 
 	render() {
+		const { user } = this.props;
+		const { isAgreement, currencyIndex } = this.state;
+		const { currencies } = user;
+
 		return (
 			<div id="coins" className="coins_container">
 				<div className="head_col">
@@ -10,87 +76,42 @@ export default class Coins extends React.Component {
 					<h3>Объем</h3>
 					<h3>Вклад</h3>
 				</div>
-				<div className="col">
-					<div className="coin_col">
-						<div className="coin_col-container">
-							<p>LTC</p>
-							<p className="cash">$ 1000.00</p>
+				{this.getCurrenciesList(currencies)}
+				{this.getSum(currencies)}
+				{isAgreement ? (
+					<div className="pop-up_coins">
+						<div className="out_container">
+							<div className="out_img" onClick={() => this.closeAgreement()} />
 						</div>
+						<h4>{`Депозит ${currencies[currencyIndex].shortName}`}</h4>
+						<p>It’s been a while, have you read any new books lately?</p>
+						<form onSubmit={(e) => this.onSubmit(e)}>
+							<input type="checkbox" />
+							<p>Я ознакомлен и согласен с условиями</p>
+							<button type="submit" className="btn">Сгенерировать данные</button>
+						</form>
 					</div>
-					<div className="button_container">
-						<button type="button" className="depo">With draw</button>
-						<button type="button" className="deposit">Депозит</button>
-					</div>
-				</div>
-				<div className="col">
-					<div className="coin_col">
-						<div className="coin_col-container">
-							<p>LTC</p>
-							<p className="cash">$ 1000.00</p>
-						</div>
-					</div>
-					<div className="button_container">
-						<button type="button" className="depo">With draw</button>
-						<button type="button" className="deposit">Депозит</button>
-					</div>
-				</div>
-				<div className="col">
-					<div className="coin_col">
-						<div className="coin_col-container">
-							<p>LTC</p>
-							<p className="cash">$ 1000.00</p>
-						</div>
-					</div>
-					<div className="button_container">
-						<button type="button" className="depo">With draw</button>
-						<button type="button" className="deposit">Депозит</button>
-					</div>
-				</div>
-				<div className="col">
-					<div className="coin_col">
-						<div className="coin_col-container">
-							<p>LTC</p>
-							<p className="cash">$ 1000.00</p>
-						</div>
-					</div>
-					<div className="button_container">
-						<button type="button" className="depo">With draw</button>
-						<button type="button" className="deposit">Депозит</button>
-					</div>
-				</div>
-				<div className="col">
-					<div className="coin_col">
-						<div className="coin_col-container">
-							<p>LTC</p>
-							<p className="cash">$ 1000.00</p>
-						</div>
-					</div>
-					<div className="button_container">
-						<button type="button" className="deposit">With draw</button>
-						<button type="button" className="deposit">Депозит</button>
-					</div>
-				</div>
-				<div className="foot_col">
-					<h4>Summary</h4>
-					<h4>$ 5 987.00</h4>
-				</div>
-
-				<div className="pop-up_coins">
-					<div className="out_container">
-						<div className="out_img" />
-					</div>
-					<h4>Депозит</h4>
-					<p>It’s been a while, have you read any new books lately?</p>
-					<form action="">
-						<input type="checkbox" />
-						<p>Я ознакомлен и согласен с условиями</p>
-					</form>
-
-					<button type="button" className="btn">Сгенерировать данные</button>
-				</div>
+				) : null}
 
 			</div>
 		);
 	}
 
 }
+
+Coins.propTypes = {
+	user: PropTypes.object,
+};
+
+Coins.defaultProps = {
+	user: null,
+};
+
+export default connect(
+	(state) => ({
+		user: state.auth.get('user'),
+	}),
+	(dispatch) => ({
+		setUser: (data) => dispatch(UserActions.setUser(data)),
+	}),
+)(Coins);

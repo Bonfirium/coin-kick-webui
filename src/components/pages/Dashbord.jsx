@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ponyImage from '../../assets/images/user.png';
 import UserActions from '../../actions/UserActions';
+import { WALLET_PATH } from '../../constants/RouterConstants';
 
 class Dashboard extends React.Component {
 
@@ -71,7 +72,7 @@ class Dashboard extends React.Component {
 				<div className="dashboard_content">
 					{this.getSumBalance(currencies)}
 					{this.getDashboardContent(currencies)}
-					<a className="btn" href="">
+					<a className="btn" href={WALLET_PATH}>
 						<div className="circle" />
 						<div className="circle" />
 						<div className="circle" />
