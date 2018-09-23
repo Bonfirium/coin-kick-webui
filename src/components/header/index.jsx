@@ -78,7 +78,15 @@ class Header extends React.Component {
 							<div className="head_line only_auth" />
 							<a className="head_item only_auth">Дашборд</a>
 							<div className="head_line only_auth" />
-
+							<div class="user_container">
+      					<div class="user_col_container">
+          				<h4>Никита Латкович</h4>
+          				<button>Выход</button>
+      					</div>
+      					<div class="user_col_container">
+          				<img class="user_img" src="" alt="">
+      					</div>
+  						</div>
 							<div id="empty" />
 						</div>
 					</div>
