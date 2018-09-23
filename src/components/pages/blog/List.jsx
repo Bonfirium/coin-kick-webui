@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BlogActions from '../../../actions/BlogActions';
-import Pen from '../../../assets/images/1.png';
-import Eye from '../../../assets/images/3.png';
-import wtf from '../../../assets/images/2.png';
+import Img1 from '../../../assets/images/1.png';
+import Img2 from '../../../assets/images/3.png';
+import Img3 from '../../../assets/images/2.png';
 
 class BlogProjects extends React.Component {
 
@@ -35,14 +35,66 @@ class BlogProjects extends React.Component {
 							<p><span><a href="">learn more...</a></span></p>
 						</div>
 						<div className="col_right">
-							<img className="pan" src={Pen} alt="" />
+							<img className="pan" src={Img1} alt="" />
 							<div className="img_container">
 								<div>
-									<img src={Eye} alt="" />
+									<img src={Img2} alt="" />
 									<p>253</p>
 								</div>
 								<div>
-									<img className="heart" />
+									<img src={Img3} alt="" className="heart" />
+									<p>47</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div className="bg_img" />
+					<div className="blog_content">
+						<div className="col_left">
+							<h3>Coffee</h3>
+							<p>by Alex1488</p>
+							<h5>$ 1569.00</h5>
+						</div>
+						<div className="col_center">
+							<p><span><a href="">learn more...</a></span></p>
+						</div>
+						<div className="col_right">
+							<img src={Img1} className="pan" alt="" />
+							<div className="img_container">
+								<div>
+									<img src={Img3} alt="" />
+									<p>253</p>
+								</div>
+								<div>
+									<img alt={Img2} className="heart" />
+									<p>47</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div className="bg_img" />
+					<div className="blog_content">
+						<div className="col_left">
+							<h3>Coffee</h3>
+							<p>by Alex1488</p>
+							<h5>$ 1569.00</h5>
+						</div>
+						<div className="col_center">
+							<p><span><a href="">learn more...</a></span></p>
+						</div>
+						<div className="col_right">
+							<img className="pan" src={Img1} alt="" />
+							<div className="img_container">
+								<div>
+									<img src={Img3} alt="" />
+									<p>253</p>
+								</div>
+								<div>
+									<img src={Img2} alt="" className="heart" />
 									<p>47</p>
 								</div>
 							</div>
@@ -61,66 +113,14 @@ class BlogProjects extends React.Component {
 							<p><span><a href="">learn more...</a></span></p>
 						</div>
 						<div className="col_right">
-							<img className="pan" src="" alt="" />
+							<img className="pan" src={Img1} alt="" />
 							<div className="img_container">
 								<div>
-									<img src="" alt="" />
+									<img src={Img3} alt="" />
 									<p>253</p>
 								</div>
 								<div>
-									<img alt="" className="heart" />
-									<p>47</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div>
-					<div className="bg_img" />
-					<div className="blog_content">
-						<div className="col_left">
-							<h3>Coffe</h3>
-							<p>by Alex1488</p>
-							<h5>$ 1569.00</h5>
-						</div>
-						<div className="col_center">
-							<p><span><a href="">learn more...</a></span></p>
-						</div>
-						<div className="col_right">
-							<img className="pan" src="" alt="" />
-							<div className="img_container">
-								<div>
-									<img src="" alt="" />
-									<p>253</p>
-								</div>
-								<div>
-									<img className="heart" />
-									<p>47</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div>
-					<div className="bg_img" />
-					<div className="blog_content">
-						<div className="col_left">
-							<h3>Coffe</h3>
-							<p>by Alex1488</p>
-							<h5>$ 1569.00</h5>
-						</div>
-						<div className="col_center">
-							<p><span><a href="">learn more...</a></span></p>
-						</div>
-						<div className="col_right">
-							<img className="pan" src="" alt="" />
-							<div className="img_container">
-								<div>
-									<img src="" alt="" />
-									<p>253</p>
-								</div>
-								<div>
-									<img className="heart" />
+									<img src={Img2} alt="" className="heart" />
 									<p>47</p>
 								</div>
 							</div>
